@@ -106,6 +106,10 @@ function AppCart() {
             {
               title: "Pricee",
               dataIndex: "price",
+              render: (value) =>{
+                return<span>${value}</span>
+              }
+
             },
             {
               title: "Quantatity",
@@ -114,8 +118,11 @@ function AppCart() {
             {
               title: "Total",
               dataIndex: "total",
+              render: (value) =>{
+                return<span>${value}</span>
             },
           ]}
+          dataSource={cartItems}
         />
       </Drawer>
     </div>
