@@ -7,6 +7,14 @@
 
 .appHeader {
   height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shoppingCartIcon {
+  font-size: 20px;
+  margin-right: 16px;
 }
 
 .pageContent {
@@ -22,4 +30,8 @@
 .itemCardImage {
   height: 150px !important;
   object-fit: scale-down;
+}
+.itemCard,
+.itemCardBadge {
+  margin: 8px;
 }

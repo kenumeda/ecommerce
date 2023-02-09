@@ -1,5 +1,8 @@
-import { Menu } from "antd";
+import { Badge, Menu } from "antd";
+import Typography from "antd/es/typography/Typography";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import Drawer from "rc-drawer";
 
 function AppHeader() {
   const navigate = useNavigate();
@@ -26,6 +29,10 @@ function AppHeader() {
                 key: "mens-shirts",
               },
               {
+                label: "Mens Shoes",
+                key: "mens-shoes",
+              },
+              {
                 label: "Mens Watches",
                 key: "mens-watches",
               },
@@ -36,8 +43,16 @@ function AppHeader() {
             key: "women",
             children: [
               {
-                label: "Womens Shirts",
-                key: "womens-shirts",
+                label: "Womens Dresses",
+                key: "womens-dresses",
+              },
+              {
+                label: "Womens Watches",
+                key: "womens-watches",
+              },
+              {
+                label: "Womens Bags",
+                key: "womens-bags",
               },
             ],
           },
@@ -47,8 +62,24 @@ function AppHeader() {
           },
         ]}
       />
+      <Typography.Title>Ken's Store</Typography.Title>
+      <AppCart />
     </div>
   );
 }
 
+function AppCart() {
+  return (
+    <div>
+      <Badge count={7} className="shoppingCartIcon">
+        <ShoppingCartOutlined />
+      </Badge>
+      <Drawer open={}></Drawer>
+    </div>
+  );
+}
+
+
 export default AppHeader;
+
+
