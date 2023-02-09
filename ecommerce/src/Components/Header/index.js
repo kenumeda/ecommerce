@@ -1,8 +1,10 @@
-import { Badge, Menu } from "antd";
-import Typography from "antd/es/typography/Typography";
+import { Badge, Drawer, Menu, Table } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import Drawer from "rc-drawer";
+import { useEffect, useState } from "react";
+
+import Typography from "antd/es/typography/Typography";
+import { getCard } from "../../API";
 
 function AppHeader() {
   const navigate = useNavigate();
@@ -69,17 +71,55 @@ function AppHeader() {
 }
 
 function AppCart() {
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+  const [cartItems, setcartItems] = useState([]);
+  useEffect(() => {
+    getCard().then((res) => {
+      setcartItems(res.products);
+    });
+  }, []);
+
   return (
     <div>
-      <Badge count={7} className="shoppingCartIcon">
+      <Badge
+        onClick={() => {
+          setCartDrawerOpen(true);
+        }}
+        count={2}
+        className="shoppingCartIcon"
+      >
         <ShoppingCartOutlined />
       </Badge>
-      <Drawer open={}></Drawer>
+      <Drawer
+        open={cartDrawerOpen}
+        onClose={() => {
+          setCartDrawerOpen(false);
+        }}
+        title="Your Cart"
+      >
+        <Table
+          columns={[
+            {
+              title: "Title",
+              dataIndex: "title",
+            },
+            {
+              title: "Pricee",
+              dataIndex: "price",
+            },
+            {
+              title: "Quantatity",
+              dataIndex: "quantatiy",
+            },
+            {
+              title: "Total",
+              dataIndex: "total",
+            },
+          ]}
+        />
+      </Drawer>
     </div>
   );
 }
 
-
 export default AppHeader;
-
-
