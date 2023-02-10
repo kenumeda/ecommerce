@@ -7,6 +7,10 @@ export const getProductsByCategory = (category) => {
   );
 };
 
+export const getCard = () => {
+  return fetch("https://dummyjson.com/carts/1").then((res) => res.json());
+};
+
 export const addtoCart = (id) => {
   return fetch("https://dummyjson.com/carts/add", {
     method: "POST",
